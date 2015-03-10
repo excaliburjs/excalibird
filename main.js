@@ -3,7 +3,7 @@
 
 // Build and configure the engine
 var engine = new ex.Engine(0, 0, "game", ex.DisplayMode.FullScreen);
-engine.isDebug = true;
+//engine.isDebug = true;
 engine.setAntialiasing(false);
 engine.backgroundColor = ex.Color.Azure.clone();
 
