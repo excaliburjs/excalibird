@@ -3,10 +3,10 @@
 
 var Config = {
 
-	BirdWidth: 45,
-	BirdHeight: 40,
+	BirdWidth: 50,
+	BirdHeight: 45,
 	BirdImpulse: -120,
-	BirdAccel: 140,
+	BirdAccel: 170,
 	BirdMaxVel: 300,
 
 	LevelSpeed: -100,
@@ -15,7 +15,7 @@ var Config = {
 
 	TowerWidth: 61,
 	TowerStacks: 10,
-	TowerGap: 130,
+	TowerGap: 110,
 	TowerTimer: 4000,
 
 	_dirty: false,

@@ -44,7 +44,7 @@ var Tower = ex.Actor.extend({
 		}else{
 			this.capSprite.draw(ctx, this.x, this.getBottom() - spriteHeight);
 			for(var i = 0; i < this.getHeight(); i += spriteHeight){
-				this.baseSprite.draw(ctx, this.x, this.getBottom() -i - spriteHeight);
+				this.baseSprite.draw(ctx, this.x, this.getBottom() - i - spriteHeight*2);
 			}
 		}
 	}

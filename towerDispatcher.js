@@ -30,11 +30,11 @@ TowerDispatcher.prototype.generateNewTower = function(){
 	var height = this.engine.getHeight();
 
 	var topTowerY = ex.Util.randomInRange(Config.TowerGap* gameScale.y, height);
-	var bottomTowerY = topTowerY - Config.TowerGap*gameScale.y;
+	var bottomTowerY = topTowerY - Config.TowerGap*gameScale.y* 2;
 
 	var top = new Tower(engine.getWidth() - 1, topTowerY, true);
 	var bottom = new Tower(engine.getWidth() - 1, bottomTowerY, false);
-	var scoreTrigger = new ex.Trigger(top.x + top.getWidth(), bottomTowerY, 20, Config.TowerGap*gameScale.y, function(){
+	var scoreTrigger = new ex.Trigger(top.x + top.getWidth(), bottomTowerY, 20, Config.TowerGap*gameScale.y* 2, function(){
 		dispatch.stats.score++;
 		dispatch.stats.text = "Score: " + dispatch.stats.score;
 		this.kill();
