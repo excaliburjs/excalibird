@@ -5,8 +5,10 @@ var Cloud = ex.Actor.extend({
       this.height = 400;
       this.dx = ex.Util.randomInRange(-30, -100);
       var cloud = Resource.Cloud.asSprite();
-      cloud.setScaleX(4);
-      cloud.setScaleY(4);
+      cloud.setScaleX(4 * gameScale.x);
+      cloud.setScaleY(4 * gameScale.y);
+
+
       this.addDrawing("default", cloud);
       this.setCenterDrawing(true);
    },

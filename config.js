@@ -14,7 +14,7 @@ var Config = {
 	LevelDensity: 1, // pipe per screen
 
 	TowerWidth: 61,
-	TowerHeight: 500,
+	TowerStacks: 10,
 	TowerGap: 130,
 	TowerTimer: 4000,
 

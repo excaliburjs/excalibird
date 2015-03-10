@@ -12,6 +12,7 @@ var Bird = ex.Actor.extend({
 		this.ay = Config.BirdAccel;
 		
 		this.anchor = new ex.Point(0.5, .6);
+		this.scale.setTo(gameScale.x, gameScale.y);
 
 		// setup animations
 		var spriteSheet = new ex.SpriteSheet(Resource.BirdSpriteSheet, 4, 1, 32, 32);

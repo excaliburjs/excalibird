@@ -2,10 +2,14 @@
 // todo add a module loading paradigm to this example, browserify or something
 
 // Build and configure the engine
-var engine = new ex.Engine(600, 400, "game");
-//engine.isDebug = true;
+var engine = new ex.Engine(0, 0, "game", ex.DisplayMode.FullScreen);
+engine.isDebug = true;
 engine.setAntialiasing(false);
 engine.backgroundColor = ex.Color.Azure.clone();
+
+// detect and auto scale to viewport height
+var detected = .5 - (Config.BirdHeight / engine.getHeight());
+var gameScale = new ex.Point(1 + detected , 1.0 + detected);
 
 // Build and load resources
 var loader = new ex.Loader();
@@ -27,12 +31,14 @@ var buildTitle = function(){
 	titleSprite.setScaleY(3);
 	title.addDrawing("title", titleSprite);
 	title.setCenterDrawing(true);
+	title.scale.setTo(gameScale.x*.9, gameScale.y*.9);
 	title.moveTo(title.x, title.y + 30, 50).moveTo(title.x, title.y, 50).repeatForever();
 	engine.add(title);
 
 	instructions = new ex.Label("Click or Tap to Start!!!", engine.getWidth()/2, engine.getHeight()-30, "20px 'Press Start 2P', cursive");
 	instructions.color = ex.Color.Yellow;
 	instructions.textAlign = ex.TextAlign.Center;
+	instructions.scale.setTo(gameScale.x * .4, gameScale.y * .4);
 	instructions.blink(300, 300).repeatForever();
 	engine.add(instructions);
 }
