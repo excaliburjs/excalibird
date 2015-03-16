@@ -3,20 +3,21 @@
 
 var Config = {
 
-	BirdWidth: 50,
-	BirdHeight: 45,
-	BirdImpulse: -120,
-	BirdAccel: 170,
-	BirdMaxVel: 300,
+	BirdWidth: 35,
+	BirdHeight: 35,
+	BirdImpulse: -200,
+	BirdAccel: 570,
+	BirdMaxVel: 450,
+	BirdScale: 1.7,
 
-	LevelSpeed: -100,
+	LevelSpeed: -250,
 	LevelAccel: 0,
 	LevelDensity: 1, // pipe per screen
 
 	TowerWidth: 61,
 	TowerStacks: 10,
-	TowerGap: 110,
-	TowerTimer: 4000,
+	TowerGap: 90,
+	TowerTimer: 2000,
 
 	_dirty: false,
 	reload: function(){

@@ -27,8 +27,8 @@ var instructions = null;
 var buildTitle = function(){
 	 title = new ex.Actor(engine.getWidth()/2, engine.getHeight()/2, 100, 100);
 	var titleSprite = Resource.Excalibird.asSprite();
-	titleSprite.setScaleX(3);
-	titleSprite.setScaleY(3);
+	titleSprite.setScaleX(2.5);
+	titleSprite.setScaleY(2.5);
 	title.addDrawing("title", titleSprite);
 	title.setCenterDrawing(true);
 	title.scale.setTo(gameScale.x, gameScale.y);
@@ -38,7 +38,7 @@ var buildTitle = function(){
 	instructions = new ex.Label("Click or Tap to Start!!!", engine.getWidth()/2, engine.getHeight()-30, "20px 'Press Start 2P', cursive");
 	instructions.color = ex.Color.Black;
 	instructions.textAlign = ex.TextAlign.Center;
-	instructions.scale.setTo(gameScale.x , gameScale.y );
+	instructions.scale.setTo(gameScale.x , gameScale.y);
 	instructions.blink(300, 300).repeatForever();
 	engine.add(instructions);
 }
@@ -72,6 +72,7 @@ var start = function(){
 }
 
 var gameOver = function(){
+	Resource.FailSound.play();
 	instructions = new ex.Label("Game Over! Try again?", engine.getWidth()/2, engine.getHeight()/2, "20px 'Press Start 2P', cursive");
 	instructions.color = ex.Color.Black;
 	instructions.textAlign = ex.TextAlign.Center;
@@ -101,8 +102,10 @@ engine.input.pointers.primary.on("down", function(){
 // start the game
 engine.start(loader).then(function(){
 	console.log("Game loaded");
-	detected = .7 - (Config.BirdHeight / engine.getHeight());
-	gameScale = new ex.Point(1.0 + detected , 1.0 + detected);
+	console.log("Height:", engine.getHeight());
+	console.log("BirdHeight:", Config.BirdHeight);	
+	detected =  (engine.getHeight() / 800) * .50 + 1;
+	gameScale = new ex.Point(detected , detected);
 	console.log("Scale:", gameScale.x);
 
 	

@@ -37,6 +37,7 @@ TowerDispatcher.prototype.generateNewTower = function(){
 	var scoreTrigger = new ex.Trigger(top.x + top.getWidth(), bottomTowerY, 20, Config.TowerGap*gameScale.y* 2, function(){
 		dispatch.stats.score++;
 		dispatch.stats.text = "Score: " + dispatch.stats.score;
+		Resource.ScoreSound.play();
 		this.kill();
 	}, false);
 	scoreTrigger.anchor = new ex.Point(0, 0);
