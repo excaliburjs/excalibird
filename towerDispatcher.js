@@ -29,14 +29,15 @@ TowerDispatcher.prototype.generateNewTower = function(){
 	var dispatch = this;
 	var height = this.engine.getHeight();
 
-	var topTowerY = ex.Util.randomInRange(Config.TowerGap, height);
-	var bottomTowerY = topTowerY - Config.TowerGap;
+	var topTowerY = ex.Util.randomInRange(Config.TowerGap* gameScale.y, height);
+	var bottomTowerY = topTowerY - Config.TowerGap*gameScale.y* 2;
 
 	var top = new Tower(engine.getWidth() - 1, topTowerY, true);
 	var bottom = new Tower(engine.getWidth() - 1, bottomTowerY, false);
-	var scoreTrigger = new ex.Trigger(top.x + top.getWidth(), bottomTowerY, 20, Config.TowerGap, function(){
+	var scoreTrigger = new ex.Trigger(top.x + top.getWidth(), bottomTowerY, 20, Config.TowerGap*gameScale.y* 2, function(){
 		dispatch.stats.score++;
 		dispatch.stats.text = "Score: " + dispatch.stats.score;
+		Resource.ScoreSound.play();
 		this.kill();
 	}, false);
 	scoreTrigger.anchor = new ex.Point(0, 0);
@@ -67,7 +68,7 @@ TowerDispatcher.prototype.start = function(){
 	var me = this;
 	me.timer = new ex.Timer(function(){
 		me.generateNewTower();
-	}, Config.TowerTimer, true);
+	}, Config.TowerTimer * gameScale.x, true);
 
 	me.engine.add(me.timer);
 }
@@ -75,6 +76,10 @@ TowerDispatcher.prototype.start = function(){
 
 TowerDispatcher.prototype.stop = function(){
 	this.towers.forEach(function(t){
+		t.dx = 0;
+	});
+
+	this.triggers.forEach(function(t){
 		t.dx = 0;
 	});
 

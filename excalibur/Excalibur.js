@@ -1186,11 +1186,11 @@ var ex;
             ctx.translate(x, y);
             ctx.rotate(this.rotation);
             if (this.flipHorizontal) {
-                ctx.translate(this.swidth, 0);
+                ctx.translate(this.swidth * this.scaleX, 0);
                 ctx.scale(-1, 1);
             }
             if (this.flipVertical) {
-                ctx.translate(0, this.sheight);
+                ctx.translate(0, this.sheight * this.scaleY);
                 ctx.scale(1, -1);
             }
             if (this.internalImage) {
