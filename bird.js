@@ -40,7 +40,9 @@ var Bird = ex.Actor.extend({
 			if(!this.dead){
 				console.log("Collision!")
 				dispatcher.stop();
-				this.actionQueue.clearActions();
+				if(this.actionQueue.hasNext()){
+					this.actionQueue.clearActions();
+				}
 				this.dead = true;
 				this.rx = 10;
 				engine.input.pointers.primary.off("down");
@@ -50,12 +52,17 @@ var Bird = ex.Actor.extend({
 		});
 
 		this.on('exitviewport', function(){
-			this.dead = true;
-			this.rx = 10;
-			dispatcher.stop();
-			this.actionQueue.clearActions();
-			engine.input.pointers.primary.off("down");
-			gameOver();
+			if(!this.dead){
+				console.log("Exit viewport!")
+				this.dead = true;
+				this.rx = 10;
+				dispatcher.stop();
+				if(this.actionQueue.hasNext()){
+					this.actionQueue.clearActions();
+				}
+				engine.input.pointers.primary.off("down");
+				gameOver();
+			}
 		});
 
 		
